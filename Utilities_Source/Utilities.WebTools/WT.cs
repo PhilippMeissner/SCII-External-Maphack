@@ -292,7 +292,7 @@ namespace Utilities.WebTools
 				byte[] JsonBodyAsBytes = Encoding.UTF8.GetBytes(JsonBody);
 
 				HttpWebRequest wr = (HttpWebRequest) WebRequest.Create("https://api.github.com/repos/MrNukealizer/SCII-External-Maphack/issues");
-
+				wr.Proxy = null;
 				wr.Method = "POST";
 				wr.ContentLength = JsonBodyAsBytes.Length;
 

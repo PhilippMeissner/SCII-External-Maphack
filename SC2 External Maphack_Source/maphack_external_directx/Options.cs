@@ -57,6 +57,7 @@ namespace maphack_external_directx
 		private TabPage tbUpdates;
 		private Button buttonCheckUpdates;
 		private CheckBox chkAutoUpdate;
+		private CheckBox checkBoxHideHUDs;
 		private NumericUpDown udGUI;
 
 		public Options()
@@ -70,6 +71,7 @@ namespace maphack_external_directx
 		private void btnSave_Click(object sender, EventArgs e)
 		{
 			Data.Player.UseTeamColors = checkBoxTeamColors.Checked;
+			MainWindow.AutoHideHUDs = checkBoxHideHUDs.Checked;
 			this.SaveSettings();
 			base.Close();
 		}
@@ -134,6 +136,7 @@ namespace maphack_external_directx
 			this.buttonCheckUpdates = new System.Windows.Forms.Button();
 			this.chkAutoUpdate = new System.Windows.Forms.CheckBox();
 			this.btnSave = new System.Windows.Forms.Button();
+			this.checkBoxHideHUDs = new System.Windows.Forms.CheckBox();
 			this.tbOptions.SuspendLayout();
 			this.tbDrawing.SuspendLayout();
 			this.groupBox5.SuspendLayout();
@@ -166,6 +169,7 @@ namespace maphack_external_directx
 			// 
 			// tbDrawing
 			// 
+			this.tbDrawing.Controls.Add(this.checkBoxHideHUDs);
 			this.tbDrawing.Controls.Add(this.checkBoxTeamColors);
 			this.tbDrawing.Controls.Add(this.label4);
 			this.tbDrawing.Controls.Add(this.cbObserverPanelDrawDirection);
@@ -182,7 +186,7 @@ namespace maphack_external_directx
 			// checkBoxTeamColors
 			// 
 			this.checkBoxTeamColors.AutoSize = true;
-			this.checkBoxTeamColors.Location = new System.Drawing.Point(226, 183);
+			this.checkBoxTeamColors.Location = new System.Drawing.Point(213, 183);
 			this.checkBoxTeamColors.Name = "checkBoxTeamColors";
 			this.checkBoxTeamColors.Size = new System.Drawing.Size(85, 17);
 			this.checkBoxTeamColors.TabIndex = 6;
@@ -699,6 +703,18 @@ namespace maphack_external_directx
 			this.btnSave.UseVisualStyleBackColor = true;
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
 			// 
+			// checkBoxHideHUDs
+			// 
+			this.checkBoxHideHUDs.AutoSize = true;
+			this.checkBoxHideHUDs.Checked = true;
+			this.checkBoxHideHUDs.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBoxHideHUDs.Location = new System.Drawing.Point(213, 202);
+			this.checkBoxHideHUDs.Name = "checkBoxHideHUDs";
+			this.checkBoxHideHUDs.Size = new System.Drawing.Size(107, 17);
+			this.checkBoxHideHUDs.TabIndex = 10;
+			this.checkBoxHideHUDs.Text = "Auto-Hide HUD\'s";
+			this.checkBoxHideHUDs.UseVisualStyleBackColor = true;
+			// 
 			// Options
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -796,6 +812,14 @@ namespace maphack_external_directx
 				try
 				{
 					this.checkBoxTeamColors.Checked = bool.Parse(file["OptionsDrawing"]["chkTeamColors"]);
+				}
+				catch
+				{
+				}
+				try
+				{
+					this.checkBoxHideHUDs.Checked = bool.Parse(file["OptionsDrawing"]["chkAutoHideHUDs"]);
+					MainWindow.AutoHideHUDs = this.checkBoxHideHUDs.Checked;
 				}
 				catch
 				{
@@ -945,6 +969,7 @@ namespace maphack_external_directx
 				file.Remove("OptionsDrawing");
 			}
 			section.Add("chkTeamColors", this.checkBoxTeamColors.Checked.ToString());
+			section.Add("chkAutoHideHUDs", this.checkBoxHideHUDs.Checked.ToString());
 			section.Add("cbObserverPanelDrawDirection", this.cbObserverPanelDrawDirection.SelectedItem.ToString());
 			section.Add("chkCameraEnemies", this.chkCameraEnemies.Checked.ToString());
 			section.Add("chkCameraAllies", this.chkCameraAllies.Checked.ToString());

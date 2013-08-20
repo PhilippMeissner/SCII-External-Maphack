@@ -741,13 +741,13 @@ namespace Data
 
 				string ModuleName = temp.Substring(0, PlusPos);
 
-				for(int i = 0; i < GameData.SC2Process.Modules.Count; i++)
+				for(int i = 0; i < GameData.SC2Modules.Count; i++)
 				{
 					try
 					{
-						if (GameData.SC2Process.Modules[i].ModuleName.Equals(ModuleName, StringComparison.OrdinalIgnoreCase))
+						if (GameData.SC2Modules[i].ModuleName.Equals(ModuleName, StringComparison.OrdinalIgnoreCase))
 						{
-							address += (uint)GameData.SC2Process.Modules[i].BaseAddress;
+							address += (uint)GameData.SC2Modules[i].BaseAddress;
 							break;
 						}
 					}
@@ -757,7 +757,7 @@ namespace Data
 						System.Threading.Thread.Sleep(0);
 						if (GameData.SC2Process.Modules[i].ModuleName.Equals(ModuleName, StringComparison.OrdinalIgnoreCase))
 						{
-							address += (uint)GameData.SC2Process.Modules[i].BaseAddress;
+							address += (uint)GameData.SC2Modules[i].BaseAddress;
 							break;
 						}
 					}

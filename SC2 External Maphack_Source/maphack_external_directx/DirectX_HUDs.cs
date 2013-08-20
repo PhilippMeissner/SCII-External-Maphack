@@ -1659,7 +1659,7 @@ namespace maphack_external_directx
 		private void tmrRefreshRate_Tick(object sender, EventArgs e)
 		{
 			((System.Windows.Forms.Timer)sender).Interval = MainWindow.HUDRefreshRate;
-			if (this._HUDType != HUDType.Info && (!_2csAPI.InGame() || _2csAPI.Player.LocalPlayer.victoryStatus != VictoryStatus.Playing))
+			if (MainWindow.AutoHideHUDs && this._HUDType != HUDType.Info && (!_2csAPI.InGame() || _2csAPI.Player.LocalPlayer.victoryStatus != VictoryStatus.Playing))
 			{
 				base.Hide();
 				this.pause = true;

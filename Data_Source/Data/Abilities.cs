@@ -29,32 +29,29 @@ namespace Data
 			}
 		}
 
-		public static void Reset()
-		{
-			_Addresses = null;
-			_Names = null;
-		}
-
+		static object TableLock = new object();
 		public static void BuildAddressTable()
 		{
-			_Addresses = new Dictionary<string, uint>();
-			_Names = new Dictionary<uint, string>();
-
-			uint ptr = (uint)GameData.offsets.ReadStructMember(ORNames.AbilTable, ORNames.Ptr0);
-			ptr = (uint)GameData.offsets.ReadStructMember(ORNames.AbilTable, ORNames.Ptr1, ptr);
-			ptr = (uint)GameData.offsets.ReadStructMember(ORNames.AbilTable, ORNames.Ptr2, ptr);
-
-			for (uint ptr2 = 0; (ptr2 = (uint)GameData.mem.ReadMemory(ptr, typeof(uint))) != 0; ptr += 4)
+			lock (TableLock)
 			{
-				uint StringAddress = 0;
-				if ((uint)GameData.mem.ReadMemory(ptr2, typeof(uint)) == 0 
-					|| (StringAddress = (uint)GameData.offsets.ReadStructMember(ORNames.AbilTable, ORNames.NameStringOffset0, ptr2)) == 0)
-					continue;
-				string AbilityName = GameData.offsets.ReadString((GameData.offsets.GetStructMemberAddress(ORNames.AbilTable, ORNames.NameStringOffset1, StringAddress)));
-				if(!_Addresses.ContainsKey(AbilityName))
+				_Addresses = new Dictionary<string, uint>();
+				_Names = new Dictionary<uint, string>();
+
+				uint ptr = (uint)GameData.offsets.ReadStructMember(ORNames.AbilTable, ORNames.Ptr0);
+				ptr = (uint)GameData.offsets.ReadStructMember(ORNames.AbilTable, ORNames.Ptr1, ptr);
+				ptr = (uint)GameData.offsets.ReadStructMember(ORNames.AbilTable, ORNames.Ptr2, ptr);
+
+				for (uint ptr2 = 0; (ptr2 = (uint)GameData.mem.ReadMemory(ptr, typeof(uint))) != 0; ptr += 4)
 				{
-					_Addresses.Add(AbilityName, ptr2);
-					_Names.Add(ptr2, AbilityName);
+					uint StringAddress = 0;
+					if ((uint)GameData.mem.ReadMemory(ptr2, typeof(uint)) == 0
+						|| (StringAddress = (uint)GameData.offsets.ReadStructMember(ORNames.AbilTable, ORNames.NameStringOffset0, ptr2)) == 0)
+						continue;
+					string AbilityName = GameData.offsets.ReadString((GameData.offsets.GetStructMemberAddress(ORNames.AbilTable, ORNames.NameStringOffset1, StringAddress)));
+					if (!_Addresses.ContainsKey(AbilityName))
+						_Addresses.Add(AbilityName, ptr2);
+					if (!_Names.ContainsKey(ptr2))
+						_Names.Add(ptr2, AbilityName);
 				}
 			}
 		}

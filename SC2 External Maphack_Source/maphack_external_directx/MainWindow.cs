@@ -45,6 +45,7 @@ namespace maphack_external_directx
 		public static bool got_local = false;
 
 		private static int _HUDRefreshRate = 50;
+		public static bool AutoHideHUDs = true;
 		public static int HUDRefreshRate
 		{
 			get
@@ -242,9 +243,8 @@ namespace maphack_external_directx
 
 		public void GameStart()
 		{
-			Abilities.Reset();
+			Unit.ResetUnits(); //Hopefully by clearing units first we'll avoid any problems with unit destinations when resetting the ability list.
 			Abilities.BuildAddressTable();
-			Unit.ResetUnits();
 			Player.Reset();
 			GameData.mapDat = new MapData(GameData.getMapData().mapInfo.filePath);
 			buildings = new HashSet<string>();

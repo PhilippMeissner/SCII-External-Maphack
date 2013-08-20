@@ -58,6 +58,7 @@ namespace Updater
 				byte[] FileData;
 
 				WebRequest Req = WebRequest.Create(URL);
+				Req.Proxy = null;
 				WebResponse Response = Req.GetResponse();
 				Stream DataStream = Response.GetResponseStream();
 

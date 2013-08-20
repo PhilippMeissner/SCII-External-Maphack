@@ -594,6 +594,27 @@ namespace Data
 				return _SC2Process;
 			}
 		}
+		public static ProcessModuleCollection SC2Modules // This should fix the crashes when opening SCIIEMH before SC2.
+		{
+			get
+			{
+				ProcessModuleCollection ReturnVal = null;
+				for (int i = 0; ReturnVal == null && i < 10; i++)
+				{
+					try
+					{
+						ReturnVal = SC2Process.Modules;
+					}
+					catch (System.ComponentModel.Win32Exception ex)
+					{
+						if (i == 9) //No more chances, so let's deal with the problem.
+							throw ex;
+						Thread.Sleep(100);
+					}
+				}
+				return ReturnVal;
+			}
+		}
 
 		public static string SC2Version
 		{

@@ -77,7 +77,15 @@
 		{
 			get
 			{
-				return Abilities.Names[AbilityPointer];
+				try
+				{
+					return Abilities.Names[AbilityPointer];
+				}
+				catch (KeyNotFoundException)
+				{
+					Abilities.BuildAddressTable();
+					return Abilities.Names[AbilityPointer];
+				}
 			}
 		}
 
