@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- The "AbsoluteOffset" attribute on Struct Members is the absolute offset if Offset was relative to another Member.
      This attribute is for ease of reading only; changing it won't affect do anything. -->
-<Offsets Version="2.0.10.26585">
+<Offsets Version="2.0.11.26825">
   <Array Name="Players" Type="Player" Size="16" Address="SC2.exe+0x35E6E00" />
   <Array Name="Units" Type="Unit" Size="0x4000" Address="SC2.exe+0x3665140" />
   <Array Name="CurrentSelections" Type="Selection" Size="16" Address="SC2.exe+0x0" />
