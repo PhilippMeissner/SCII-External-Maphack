@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Security.Cryptography;
+using System.Xml.Linq;
 
 namespace Updater
 {
@@ -136,6 +137,41 @@ namespace Updater
 
 					if (md5ResultAsString != file[2].ToLower())
 					{
+						if (file[1].Contains('O') && file.Length >= 6)
+						{
+							//TODO: This is a disaster waiting to happen without more error checking, thus the try/catch.
+							try
+							{
+								XDocument _File;
+								using (FileStream fs = new FileStream(CurrentFolder + file[0], FileMode.Open, FileAccess.Read, FileShare.Read))
+								{
+									_File = XDocument.Load(fs);
+								}
+
+								XElement _BaseElement = _File.Root;
+								string _Version;
+								if (_BaseElement.HasAttributes && _BaseElement.Attribute("Version") != null)
+									_Version = _BaseElement.Attribute("Version").Value;
+								else
+									_Version = "-1.-1.-1.-1";
+
+								string[] FileVersion = _Version.Split('.', ',');
+								string[] NewVersion = file[5].Split('.', ',');
+
+								int fv0 = int.Parse(FileVersion[0]);
+								int fv1 = int.Parse(FileVersion[1]);
+								int fv2 = int.Parse(FileVersion[2]);
+								int nv0 = int.Parse(NewVersion[0]);
+								int nv1 = int.Parse(NewVersion[1]);
+								int nv2 = int.Parse(NewVersion[2]);
+
+								if (fv0 > nv0 || (fv0 == nv0 && (fv1 > nv1 || (fv1 == nv1 && fv2 > nv2))))
+									continue;
+							}
+							catch
+							{
+							}
+						}
 						int NewSize;
 						if (!int.TryParse(file[4], out NewSize))
 							NewSize = -1;
