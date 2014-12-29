@@ -144,6 +144,7 @@ namespace maphack_external_directx
 		private DataGridViewTextBoxColumn Race;
 		private DataGridViewCheckBoxColumn Toggle;
 		public ToolStripButton toolStripButtonInfo;
+		public ToolStripButton toolStripButtonCopyMap;
 		public static float[] y_coordsDest = new float[0x4000];
 
 		public MainWindow()
@@ -440,6 +441,7 @@ namespace maphack_external_directx
 			this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripButtonInfo = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButtonResources = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButtonObserver = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButtonMap = new System.Windows.Forms.ToolStripButton();
@@ -449,7 +451,7 @@ namespace maphack_external_directx
 			this.tmrMain = new System.Windows.Forms.Timer(this.components);
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.tmrUpdateStatus = new System.Windows.Forms.Timer(this.components);
-			this.toolStripButtonInfo = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButtonCopyMap = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayerData)).BeginInit();
 			this.toolStrip.SuspendLayout();
 			this.contextMenuStrip.SuspendLayout();
@@ -592,7 +594,8 @@ namespace maphack_external_directx
             this.toolStripButtonMap,
             this.btnOptions,
             this.btnTrainer,
-            this.toolStripLabelStatus});
+            this.toolStripLabelStatus,
+            this.toolStripButtonCopyMap});
 			this.toolStrip.Location = new System.Drawing.Point(0, 23);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -621,6 +624,16 @@ namespace maphack_external_directx
 			this.stopToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
 			this.stopToolStripMenuItem.Text = "Stop";
 			this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
+			// 
+			// toolStripButtonInfo
+			// 
+			this.toolStripButtonInfo.BackColor = System.Drawing.Color.Gray;
+			this.toolStripButtonInfo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.toolStripButtonInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButtonInfo.Name = "toolStripButtonInfo";
+			this.toolStripButtonInfo.Size = new System.Drawing.Size(52, 22);
+			this.toolStripButtonInfo.Text = "Info Off";
+			this.toolStripButtonInfo.Click += new System.EventHandler(this.toolStripButtonInfo_Click);
 			// 
 			// toolStripButtonResources
 			// 
@@ -691,15 +704,15 @@ namespace maphack_external_directx
 			this.tmrUpdateStatus.Interval = 25;
 			this.tmrUpdateStatus.Tick += new System.EventHandler(this.tmrUpdateStatus_Tick);
 			// 
-			// toolStripButtonInfo
+			// toolStripButtonCopyMap
 			// 
-			this.toolStripButtonInfo.BackColor = System.Drawing.Color.Gray;
-			this.toolStripButtonInfo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.toolStripButtonInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripButtonInfo.Name = "toolStripButtonInfo";
-			this.toolStripButtonInfo.Size = new System.Drawing.Size(52, 22);
-			this.toolStripButtonInfo.Text = "Info Off";
-			this.toolStripButtonInfo.Click += new System.EventHandler(this.toolStripButtonInfo_Click);
+			this.toolStripButtonCopyMap.BackColor = System.Drawing.Color.Gray;
+			this.toolStripButtonCopyMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+			this.toolStripButtonCopyMap.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButtonCopyMap.Name = "toolStripButtonCopyMap";
+			this.toolStripButtonCopyMap.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButtonCopyMap.Text = "Copy map file path to clipboard";
+			this.toolStripButtonCopyMap.Click += new System.EventHandler(this.toolStripButtonCopyMap_Click);
 			// 
 			// MainWindow
 			// 
@@ -1187,6 +1200,12 @@ namespace maphack_external_directx
 			}
 			this.toolStripLabelStatus.Text = this.message;
 			UpdateRefreshes("Status");
+		}
+
+		private void toolStripButtonCopyMap_Click(object sender, EventArgs e)
+		{
+			if (GameData.mapDat != null && !string.IsNullOrEmpty(GameData.mapDat.FileName))
+				Clipboard.SetText(GameData.mapDat.FileName);
 		}
 
 	}
