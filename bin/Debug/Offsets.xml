@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- The "AbsoluteOffset" attribute on Struct Members is the absolute offset if Offset was relative to another Member.
      This attribute is for ease of reading only; changing it won't affect do anything. -->
-<Offsets Version="2.1.8.33553">
-  <Array Name="Players" Type="Player" Size="16" Address="SC2.exe+0x3620CB0" />
-  <Array Name="Units" Type="Unit" Size="0x4000" Address="SC2.exe+0x369F580" />
+<Offsets Version="2.1.9.34644">
+  <Array Name="Players" Type="Player" Size="16" Address="SC2.exe+0x3625F90" />
+  <Array Name="Units" Type="Unit" Size="0x4000" Address="SC2.exe+0x36A4840" />
   <Array Name="CurrentSelections" Type="Selection" Size="16" Address="SC2.exe+0x0" />
   <Array Name="PlayerControlGroups" Type="ControlGroup" Size="16" Address="SC2.exe+0" />
-  <Array Name="GalaxyDataTable" Type="GalaxyTableEntry" Size="0x8000" Address="SC2.exe+0x2E2F7A8" />
-  <Struct Name="Timer" Size="4" Address="SC2.exe+0x356EDF4">
+  <Array Name="GalaxyDataTable" Type="GalaxyTableEntry" Size="0x8000" Address="SC2.exe+0x2E347A8" />
+  <Struct Name="Timer" Size="4" Address="SC2.exe+0x35740D4">
     <Member Name="timer" Type="Fixed" Size="4" Offset="0" />
   </Struct>
   <Struct Name="Timer2" Size="4" Address="SC2.exe+0x0">
     <Member Name="timer" Type="Unsigned" Size="4" Offset="0" />
   </Struct>
-  <Struct Name="LocalPlayer" Size="1" Address="SC2.exe+0x11596A8">
+  <Struct Name="LocalPlayer" Size="1" Address="SC2.exe+0x115E6A8">
     <Member Name="LocalPlayer" Type="Unsigned" Size="1" Offset="0" />
     <Member Name="ReplayWatchedPlayer" Type="Unsigned" Size="1" Offset="1" />
   </Struct>
@@ -21,7 +21,7 @@
     <Member Name="times_used" Type="Unsigned" Size="2" Offset="0" />
     <Member Name="data_pointer" Type="Unsigned" Size="4" Offset="times_used+8" AbsoluteOffset="0x8" />
   </Struct>
-  <Struct Name="AbilTable" Size="-1" Address="SC2.exe+0x1175FB4">
+  <Struct Name="AbilTable" Size="-1" Address="SC2.exe+0x117AFB4">
     <!-- This is not an actual struct. It is basically a collection of offsets used in the process of getting the Ability name/address table. -->
     <Member Name="Ptr0" Type="Unsigned" Size="4" Offset="0" />
     <Member Name="Ptr1" Type="Unsigned" Size="4" Offset="0x1C" />
@@ -70,20 +70,20 @@
     <Member Name="Group9" Type="Byte" Size="-1" Offset="Group8+0x1B60" AbsoluteOffset="0xDB00" />
     <Member Name="Group10" Type="Byte" Size="-1" Offset="Group9+0x1B60" AbsoluteOffset="0xF660" />
   </Struct>
-  <Struct Name="Selection" Size="0x1B60" Address="SC2.exe+0x3204530">
+  <Struct Name="Selection" Size="0x1B60" Address="SC2.exe+0x3209810">
     <Member Name="num_selected" Type="Unsigned" Size="2" Offset="0x0" />
     <Member Name="num_types_selected" Type="Unsigned" Size="2" Offset="num_selected+2" AbsoluteOffset="0x2" />
     <Member Name="highlighted_type" Type="Unsigned" Size="2" Offset="num_types_selected+2" AbsoluteOffset="0x4" />
     <Member Name="num_pages" Type="Unsigned" Size="2" Offset="highlighted_type+2" AbsoluteOffset="0x6" />
     <Member Name="selected_IDs" Type="Unsigned" Size="4" Count="500" Offset="num_pages+2" AbsoluteOffset="0x8" />
   </Struct>
-  <Struct Name="CameraBounds" Size="-1" Address="SC2.exe+0x3142600">
+  <Struct Name="CameraBounds" Size="-1" Address="SC2.exe+0x31478E0">
     <Member Name="left_precise" Type="Fixed" Size="4" Offset="0" />
     <Member Name="bottom_precise" Type="Fixed" Size="4" Offset="left_precise+4" AbsoluteOffset="0x4" />
     <Member Name="right_precise" Type="Fixed" Size="4" Offset="bottom_precise+4" AbsoluteOffset="0x8" />
     <Member Name="top_precise" Type="Fixed" Size="4" Offset="right_precise+4" AbsoluteOffset="0xC" />
   </Struct>
-  <Struct Name="MapInfo" Size="-1" Address="SC2.exe+0x356ED30">
+  <Struct Name="MapInfo" Size="-1" Address="SC2.exe+0x3574010">
     <Member Name="FileInfoPointer" Type="Unsigned" Size="4" Offset="0" />
     <Member Name="FullWidthI" Type="Signed" Size="4" Offset="0x118" />
     <Member Name="FullHeightI" Type="Signed" Size="4" Offset="FullWidthI+4" AbsoluteOffset="0x11C" />

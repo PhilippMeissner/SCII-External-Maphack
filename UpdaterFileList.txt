@@ -13,7 +13,7 @@ Microsoft.DirectX.dll|C|0c453970e89db1c1eb9de087e6eab5ba|https://raw.github.com/
 MpqTool.exe|C|12b4e073ba22ab41aad3400249124730|https://raw.github.com/MrNukealizer/SCII-External-Maphack/Main/bin/Debug/MpqTool.exe|49152
 MpqTool.exe.config|C|e0d80706c31ea90fd5d09fcb3b2d49f9|https://raw.github.com/MrNukealizer/SCII-External-Maphack/Main/bin/Debug/MpqTool.exe.config|144
 MpqTool.pdb|C|a2b56175cae6ff530892c1a79b4c85fb|https://raw.github.com/MrNukealizer/SCII-External-Maphack/Main/bin/Debug/MpqTool.pdb|99840
-Offsets.xml|O|0a772bef949981c1a9619f83fda69dae|https://raw.github.com/MrNukealizer/SCII-External-Maphack/Main/bin/Debug/Offsets.xml|23392|2.1.8.33553
+Offsets.xml|O|c1bb6d7bf28b935313851fe6fa725c4e|https://raw.github.com/MrNukealizer/SCII-External-Maphack/Main/bin/Debug/Offsets.xml|23392|2.1.9.34644
 PatternScan.dll|C|3f285f4cb4429e77a99abcafc6183935|https://raw.github.com/MrNukealizer/SCII-External-Maphack/Main/bin/Debug/PatternScan.dll|28672
 PatternScan.pdb|C|f9f4b48f126f986e2cae6b1d8a857951|https://raw.github.com/MrNukealizer/SCII-External-Maphack/Main/bin/Debug/PatternScan.pdb|30208
 SC2 External Maphack.exe|C|8dcf92c7742a2a2b6c2bf53ba866f361|https://raw.github.com/MrNukealizer/SCII-External-Maphack/Main/bin/Debug/SC2%20External%20Maphack.exe|860160
